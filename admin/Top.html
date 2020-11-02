@@ -1,13 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Test-Admin-index</title>
+<script src="script/top.js"></script>
+<script type="text/javascript">
+    function chkForm(frmObj){
+        var cnt=0;
+        for(var i=0; i<frmObj.length; i++){
+            if(frmObj.elements[i].type=="radio"){
+                if(frmObj.elements[i].checked==true) cnt++;
+            }
+        }
+        if(cnt>0){
+            /* 選択されている場合は、TRUEを返してフォーム送信 */
+            return true;
+        }else{
+            /* 選択されていない場合は、アラート表示後、FALSEを返してフォームを送信しない */
+            alert("一番好きな果物が選択されていません");
+            return false;
+        }
+    }
+</script>
+
 </head>
 <body>
-
+    <form action="/content/demo/test.php" method="post" onsubmit="return chkForm(this)">
+        一番好きな果物：
+        <input type="radio" name="fruit" value="apple" />リンゴ　
+        <input type="radio" name="fruit" value="banana" />バナナ　
+        <input type="radio" name="fruit" value="grape" />ブドウ
+        <input type="submit" value="送信" />
+    </form>
+    
 <h1>Test-Admin-Top</h1>
 <p>ExamWeb master</p>
 <p>ログインは下記から</p>
