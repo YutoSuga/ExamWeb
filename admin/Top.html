@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Test-Admin-index</title>
+<title>Test-Admin</title>
 <script src="script/top.js"></script>
 <script type="text/javascript">
     function chkForm(frmObj){
@@ -21,6 +21,17 @@
             return false;
         }
     }
+    function login(id,pass){
+        /* ログイン用関数 */
+        if(id == "admin" && pass == "admin"){
+            /* 選択されている場合は、TRUEを返してフォーム送信 */
+            return true;
+        }else{
+            /* 選択されていない場合は、アラート表示後、FALSEを返してフォームを送信しない */
+            alert("IDとPASSを確認してください");
+            return false;
+        }
+    }
 </script>
 
 </head>
@@ -36,7 +47,7 @@
 <h1>Test-Admin-Top</h1>
 <p>ExamWeb master</p>
 <p>ログインは下記から</p>
-<form action="/Menu" method="POST">
+<form action="admin/menu.html" method="POST" onsubmit="login(id,pass)">
 ID:<input type="text" name="id" size="8">
 PASS:<input type="password" name="pass" size="8">
 <input type="submit" name="submit" value="ログイン">
