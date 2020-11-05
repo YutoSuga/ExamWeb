@@ -6,63 +6,38 @@
     <title>Test-Admin</title>
     <script src="script/top.js"></script>
     <script type="text/javascript">
-        function chkForm(frmObj) {
-            var cnt = 0;
-            for (var i = 0; i < frmObj.length; i++) {
-                if (frmObj.elements[i].type == "radio") {
-                    if (frmObj.elements[i].checked == true) cnt++;
-                }
-            }
-            if (cnt > 0) {
-                /* 選択されている場合は、TRUEを返してフォーム送信 */
+        /* 選択されていない場合は、アラート表示後、FALSEを返してフォームを送信しない */
+        function passCheck(result) {
+            if (result == "aka") {
+                alert("赤ですね");
+                return true;
+            } else if (result == "ao") {
+                alert("青ですね");
                 return true;
             } else {
-                /* 選択されていない場合は、アラート表示後、FALSEを返してフォームを送信しない */
-                alert("一番好きな果物が選択されていません");
+                alert("数字を入力してください");
                 return false;
             }
-        }
-        function login(frmObj) {
-            /* ログイン用関数 */
-            var a = document.getElementsByName("pass");
-            if (a == "admin") {
-                /* 選択されている場合は、TRUEを返してフォーム送信 */
-                return true;
-            } else {
-                /* 選択されていない場合は、アラート表示後、FALSEを返してフォームを送信しない */
-                alert("IDとPASSを確認してください");
-                return false;
-            }
-        }
+        }    
     </script>
-
 </head>
+
 <header>
     <h1>Test-Admin-ExamWeb-master</h1>
     <p>top</p>
 </header>
 
 <body>
-    <a href = "index.html">←戻る</a>
-    <form name="backReturn" action="menu.html" method="POST" onsubmit= true>
+    <a href="index.html">←戻る</a>
+    <form name="backReturn" action="menu.html" method="POST" onsubmit=true>
         <input type="submit" name="submit" value="ログイン">
     </form>
-    <form action="/content/demo/test.php" method="post" onsubmit="return chkForm(this)">
-        一番好きな果物：
-        <input type="radio" name="fruit" value="apple" />リンゴ　
-        <input type="radio" name="fruit" value="banana" />バナナ　
-        <input type="radio" name="fruit" value="grape" />ブドウ
-        <input type="submit" value="送信" />
-    </form>
 
-    <p>★ログインは下記から</p>
-    <form name="login" action="menu.html" method="POST" onsubmit="return login(this)">
-        ID:<input type="text" name="id" size="8">
-        PASS:<input type="password" name="pass" id="pass" size="8">
+    <p>★数字を入力してください</p>
+    <form name="login" action="menu.html" method="POST" onsubmit="return passCheck(this)">
+        入力フォーム <input type="text" name="suji" size="8">
         <input type="submit" name="submit" value="ログイン">
-
     </form>
-
 </body>
 
 </html>
